@@ -1,0 +1,13 @@
+#home_header_img {
+  background-image: url("../../../public/Images/flowerBackground1.jpg");
+  background-size: cover;
+  background-position: center;
+}
+@media screen and (max-width: 570px) {
+  #home_header_content h1 {
+    font-size: 2rem;
+  }
+  #home_header_content p {
+    font-size: 0.7rem;
+  }
+}
