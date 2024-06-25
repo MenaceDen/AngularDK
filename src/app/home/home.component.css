@@ -3,9 +3,7 @@
   background-size: cover;
   background-position: center;
 }
-.focus-ring {
-  --bs-focus-ring-color: transparent;
-}
+
 @media screen and (max-width: 570px) {
   #home_header_content h1 {
     font-size: 2rem;
