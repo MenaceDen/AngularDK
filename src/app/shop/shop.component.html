@@ -1,54 +1,49 @@
 <div class="container">
   <div class="row text-center">
     <div class="col-3">
-      <a href="" class="text-decoration-none text-dark"
-        >Simpathy<br />
+      <button (click)="selCategory('simpathy')" class="btn border-0">
+        Simpathy<br />
         <img
           src="Images/Categories/category1.png"
           alt="Simpathy category"
           class="img-fluid border-danger-subtle border-bottom mt-3"
           width="100px"
         />
-      </a>
+      </button>
     </div>
     <div class="col-3">
-      <a href="" class="text-decoration-none text-dark"
-        >Anniversary<br />
+      <button (click)="selCategory('anniversary')" class="btn border-0">
+        Anniversary<br />
         <img
           src="Images/Categories/category2.png"
           alt="Anniversary category"
           class="img-fluid border-danger-subtle border-bottom mt-3"
           width="100px"
         />
-      </a>
+      </button>
     </div>
     <div class="col-3">
-      <a href="" class="text-decoration-none text-dark"
-        >Congratulations<br />
+      <button (click)="selCategory('congratulations')" class="btn border-0">
+        Congratulations<br />
         <img
           src="Images/Categories/category3.png"
           alt="Congratulations category"
           class="img-fluid border-danger-subtle border-bottom mt-3"
           width="100px"
         />
-      </a>
+      </button>
     </div>
     <div class="col-3">
-      <a href="" class="text-decoration-none text-dark"
-        >Get Well<br />
+      <button (click)="selCategory('get-well')" class="btn border-0">
+        Get Well<br />
         <img
           src="Images/Categories/category4.png"
           alt="Get well category"
           class="img-fluid border-danger-subtle border-bottom mt-3"
           width="100px"
         />
-      </a>
+      </button>
     </div>
   </div>
-</div>
-<div class="container">
-  <p>{{ warehouse.offer.goods[2].id }}</p>
-  <h4>{{ warehouse.offer.goods[2].name }}</h4>
-  <img class="img-fluid" [src]="warehouse.offer.goods[2].imgSrc" alt="buket" />
-  <p>{{ warehouse.offer.goods[2].description }}</p>
+  <router-outlet></router-outlet>
 </div>
