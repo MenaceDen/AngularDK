@@ -1,10 +1,11 @@
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root',
 })
 export class WarehouseService {
-  constructor() {}
+  constructor(private router: Router) {}
   futureJSON =
     `{"goods": [` +
     `{"id":1, "category":"simpathy", "name":"Beautiful Spirit Basket", "price":105, "imgSrc":"/Images/simpathy/product1.PNG", "description":"Let them know how much you care with a gorgeous bouquet that features carnations, stock, roses, lilies and Fuji mums. Each bloom is a thoughtful reminder of your support and love, while sitting in a beautifully crafted basket."},` +
@@ -35,4 +36,15 @@ export class WarehouseService {
     `{"id":26, "category":"congratulations", "name":"CONGRATS BELGIAN CHOCOLATE COVERED BERRY-GRAM", "price":55, "imgSrc":"/Images/congratulations/product26.PNG", "description":"Artisan Crafted Belgian Chocolate Covered Treats Crafted in a Small Batch Kitchen 12 Strawberries Hand Dipped in Belgian Dark Chocolate Hand Decorated with drizzles and White Chocolate Letters spelling out 'CONGRATS' Arrives in an Elegant Gift Box"} ]}`;
 
   offer = JSON.parse(this.futureJSON);
+  offerId?: number;
+  prodUrl?: string;
+  showProduct(id: number) {
+    this.offerId = id;
+    this.router.navigate(['/product', this.offerId]);
+    const parsedUrl = new URL(window.location.href);
+    let stringToShrink = parsedUrl.href.toString();
+    let shrinkIndex = stringToShrink.search('shop');
+    let part = stringToShrink.slice(shrinkIndex - 1);
+    this.prodUrl = part;
+  }
 }

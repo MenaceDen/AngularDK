@@ -2,7 +2,10 @@
   <div class="row">
     @for(bouquet of warehouse.offer.goods; track bouquet){ @if(bouquet.category
     === categName ){
-    <div class="col-lg-4 col-md-6 col-12 text-center">
+    <button
+      class="btn border-0 col-lg-4 col-md-6 col-12 text-center"
+      (click)="chooseProduct(bouquet.id)"
+    >
       <img
         class="img-fluid"
         [src]="bouquet.imgSrc"
@@ -10,7 +13,7 @@
       /><br />
       <h4>{{ bouquet.name }}</h4>
       <p>{{ bouquet.price }}<span>$</span></p>
-    </div>
+    </button>
     } }
   </div>
 </div>

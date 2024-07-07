@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { WarehouseService } from '../warehouse.service';
+import { Component } from '@angular/core';
+
 import { CategoryComponent } from '../category/category.component';
 import { RouterLink, RouterOutlet, Router } from '@angular/router';
 
@@ -10,13 +10,10 @@ import { RouterLink, RouterOutlet, Router } from '@angular/router';
   templateUrl: './shop.component.html',
   styleUrl: './shop.component.css',
 })
-export class ShopComponent implements OnInit {
-  constructor(public warehouse: WarehouseService, private router: Router) {}
-  ngOnInit(): void {
-    //console.log(typeof this.warehouse.offer.goods[0].price);
-  }
+export class ShopComponent {
+  constructor(private router: Router) {}
+
   selCategory(catName: string) {
     this.router.navigate(['/shop', catName]);
-    console.log(`parent ${catName}`);
   }
 }

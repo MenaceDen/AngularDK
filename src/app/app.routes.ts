@@ -4,6 +4,7 @@ import { ShopComponent } from './shop/shop.component';
 import { FooterComponent } from './footer/footer.component';
 import { CategoryComponent } from './category/category.component';
 import { NotFoundComponent } from './not-found/not-found.component';
+import { ProductComponent } from './product/product.component';
 
 export const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -13,6 +14,7 @@ export const routes: Routes = [
     component: ShopComponent,
     children: [{ path: ':category', component: CategoryComponent }],
   },
+  { path: 'product/:id', component: ProductComponent },
   { path: 'contact', component: FooterComponent },
   { path: 'not-found', component: NotFoundComponent },
   { path: '**', redirectTo: '/not-found' },
