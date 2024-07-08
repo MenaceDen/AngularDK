@@ -2,3 +2,10 @@
 :root {
   --main-pink-color: #feaeb8;
 }
+#social_nav {
+  z-index: 2 !important;
+}
+body {
+  position: relative;
+  min-height: 100vh;
+}

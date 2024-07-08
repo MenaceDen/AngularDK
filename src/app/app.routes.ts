@@ -15,7 +15,6 @@ export const routes: Routes = [
     children: [{ path: ':category', component: CategoryComponent }],
   },
   { path: 'product/:id', component: ProductComponent },
-  { path: 'contact', component: FooterComponent },
   { path: 'not-found', component: NotFoundComponent },
   { path: '**', redirectTo: '/not-found' },
 ];

@@ -37,14 +37,49 @@ export class WarehouseService {
 
   offer = JSON.parse(this.futureJSON);
   offerId?: number;
-  prodUrl?: string;
+
   showProduct(id: number) {
     this.offerId = id;
     this.router.navigate(['/product', this.offerId]);
-    const parsedUrl = new URL(window.location.href);
-    let stringToShrink = parsedUrl.href.toString();
-    let shrinkIndex = stringToShrink.search('shop');
-    let part = stringToShrink.slice(shrinkIndex - 1);
-    this.prodUrl = part;
+  }
+  showAnother(way: string) {
+    let currentId = this.offerId;
+    let ids: number[] = [];
+    let smallerIds: number[] = [];
+    let higherIds: number[] = [];
+    for (let i = 0; i < this.offer.goods.length; i++) {
+      ids.push(this.offer.goods[i].id);
+    }
+
+    if (way === 'prev') {
+      if (currentId) {
+        for (let i = 0; i < ids.length; i++) {
+          if (ids[i] < currentId) {
+            smallerIds.push(ids[i]);
+          }
+        }
+      }
+      let prevId = Math.max(...smallerIds);
+
+      if (prevId == -Infinity) {
+        prevId = Math.max(...ids);
+      }
+      this.showProduct(prevId);
+    }
+    if (way === 'next') {
+      if (currentId) {
+        for (let i = 0; i < ids.length; i++) {
+          if (ids[i] > currentId) {
+            higherIds.push(ids[i]);
+          }
+        }
+      }
+      let nextId = Math.min(...higherIds);
+
+      if (nextId == Infinity) {
+        nextId = Math.min(...ids);
+      }
+      this.showProduct(nextId);
+    }
   }
 }

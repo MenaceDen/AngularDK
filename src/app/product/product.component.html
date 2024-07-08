@@ -1,20 +1,37 @@
 <div class="container">
   @for(product of warehouse.offer.goods; track product){ @if(product.id ===
   warehouse.offerId){
-  <div class="container-fluid d-flex justify-content-between">
-    <p>
-      {{ "home" + warehouse.prodUrl + "/" + product.name }}
-    </p>
-    <div class="d-flex flex-nowrap">
-      <button class="btn rounded-0 border-0 py-0" style="height: 30px">
-        &lt; Prev
-      </button>
-      <span>|</span>
-      <button class="btn rounded-0 border-0 py-0" style="height: 30px">
-        Next &gt;
-      </button>
+  <div class="row">
+    <div class="col-lg-6 col-12 px-0">
+      <div>
+        <a class="text-decoration-none text-dark" routerLink="/home">Home</a
+        ><span>/</span
+        ><a class="text-decoration-none text-dark" routerLink="/shop">Shop</a
+        ><span>/</span><span>{{ product.category }}</span
+        ><span>/</span><span>{{ product.name }}</span>
+      </div>
+    </div>
+    <div class="col-lg-6 col-12 d-flex justify-content-end mb-3 px-0">
+      <div>
+        <button
+          class="btn rounded-0 border-0 py-0"
+          style="height: 30px"
+          (click)="chooseAnother('prev')"
+        >
+          &lt; Prev
+        </button>
+        <span>|</span>
+        <button
+          class="btn rounded-0 border-0 py-0"
+          style="height: 30px"
+          (click)="chooseAnother('next')"
+        >
+          Next &gt;
+        </button>
+      </div>
     </div>
   </div>
+
   <div class="row">
     <div
       class="col-lg-6 col-12 d-flex justify-content-lg-end justify-content-center"
@@ -36,7 +53,7 @@
             style="width: 106px"
           />
 
-          <button class="btn btn-dark rounded-1" style="width: 106px">
+          <button class="btn btn-dark rounded-1 mb-5" style="width: 106px">
             Add to cart
           </button>
         </div>
