@@ -50,10 +50,23 @@
             type="text"
             class="form-control my-2"
             id="quantity"
+            #quantity
             style="width: 106px"
           />
 
-          <button class="btn btn-dark rounded-1 mb-5" style="width: 106px">
+          <button
+            class="btn btn-dark rounded-1 mb-5"
+            style="width: 106px"
+            (click)="
+              addToCart(
+                product.id,
+                product.imgSrc,
+                product.name,
+                product.price,
+                quantity.value
+              )
+            "
+          >
             Add to cart
           </button>
         </div>

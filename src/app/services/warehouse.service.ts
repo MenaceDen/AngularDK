@@ -1,10 +1,13 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
+import { Subject } from 'rxjs';
+import { CartItem } from '../Models/CartItem';
 
 @Injectable({
   providedIn: 'root',
 })
 export class WarehouseService {
+  showBadgeNumber: Subject<number> = new Subject<number>();
   constructor(private router: Router) {}
   futureJSON =
     `{"goods": [` +
@@ -37,7 +40,8 @@ export class WarehouseService {
 
   offer = JSON.parse(this.futureJSON);
   offerId?: number;
-
+  quantityToShow: number = 0;
+  cartItems: CartItem[] = [];
   showProduct(id: number) {
     this.offerId = id;
     this.router.navigate(['/product', this.offerId]);
@@ -81,5 +85,26 @@ export class WarehouseService {
       }
       this.showProduct(nextId);
     }
+  }
+  showOnTheNav(quantity: number) {
+    this.showBadgeNumber.next(quantity);
+  }
+  addProductToCart(
+    id: number,
+    imgSrc: string,
+    name: string,
+    price: number,
+    quantity: number
+  ) {
+    this.cartItems.push(new CartItem(id, imgSrc, name, price, quantity));
+    this.quantityToShow += quantity;
+    this.showOnTheNav(this.quantityToShow);
+    console.log(this.cartItems);
+  }
+  removeFromCart(index: number, quantity: number) {
+    this.cartItems.splice(index, 1);
+    console.log(this.cartItems);
+    this.quantityToShow -= quantity;
+    this.showOnTheNav(this.quantityToShow);
   }
 }

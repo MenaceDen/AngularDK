@@ -22,9 +22,9 @@
   </symbol>
 </svg>
 <!-- Header -->
-<div class="container">
+<div class="container-fluid bg-light">
   <header
-    class="d-flex flex-md-row flex-column flex-wrap align-items-start justify-content-start justify-content-md-between py-1"
+    class="container d-flex flex-md-row flex-column flex-wrap align-items-start justify-content-start justify-content-md-between py-1"
   >
     <a
       href="/"
@@ -123,11 +123,12 @@
         </ul>
       </li>
       <li>
-        <a href="#" class="nav-link mt-2 px-1 position-relative">
+        <a routerLink="/cart" class="nav-link mt-2 px-1 position-relative">
           <span
             class="position-absolute top-25 start-100 translate-middle badge rounded-circle bg-secondary"
+            [ngClass]="numb === 0 ? 'invisible' : 'visible'"
           >
-            {{ 1 }}
+            {{ numb }}
             <span class="visually-hidden">bouquets</span>
           </span>
           <svg class="bi d-block" width="24" height="24">

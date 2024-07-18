@@ -14,4 +14,23 @@ export class ProductComponent {
   chooseAnother(dest: string) {
     this.warehouse.showAnother(dest);
   }
+  addToCart(
+    id: number,
+    imgSrc: string,
+    name: string,
+    price: number,
+    quantity: any
+  ) {
+    if (parseInt(quantity)) {
+      this.warehouse.addProductToCart(
+        id,
+        imgSrc,
+        name,
+        price,
+        parseInt(quantity)
+      );
+    } else {
+      console.log('not a number'); //Remove it later!
+    }
+  }
 }

@@ -19,5 +19,5 @@ import { SocialSidebarComponent } from './social-sidebar/social-sidebar.componen
   styleUrl: './app.component.css',
 })
 export class AppComponent {
-  title = 'AngularProjectDK';
+  title = 'Flower Shop';
 }

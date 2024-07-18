@@ -1,0 +1,40 @@
+<div class="container text-center py-3">
+  @if(warehouseService.cartItems.length == 0){
+  <h1>Shopping cart is empty</h1>
+  } @else {
+  <div class="container-fluid"></div>
+  } @for(item of warehouseService.cartItems; track $index){
+  <div class="row py-1 border-bottom">
+    <div class="col-lg-5 col-12 d-flex">
+      <img
+        [src]="item.imgSrc"
+        [alt]="item.name"
+        class="img-fluid"
+        style="width: 100px"
+      />
+      <div class="d-flex flex-column align-items-start">
+        <h4 class="ms-1">{{ item.name }}</h4>
+        <button
+          class="btn ms-1 p-0"
+          (click)="delFromCart($index, item.quantity)"
+        >
+          Remove
+        </button>
+      </div>
+    </div>
+
+    <div
+      class="col-lg-5 col-10 d-flex justify-content-between me-sm-0 ms-lg-0 ms-auto mt-2"
+    >
+      <h4>{{ item.price }}<span>$</span></h4>
+      <input
+        type="text"
+        class="form-control"
+        [defaultValue]="item.quantity"
+        style="width: 60px; height: 35px"
+      />
+      <h4>{{ item.price * item.quantity }}<span>$</span></h4>
+    </div>
+  </div>
+  }
+</div>
