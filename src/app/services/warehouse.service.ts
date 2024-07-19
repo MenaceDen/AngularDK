@@ -96,15 +96,34 @@ export class WarehouseService {
     price: number,
     quantity: number
   ) {
-    this.cartItems.push(new CartItem(id, imgSrc, name, price, quantity));
-    this.quantityToShow += quantity;
-    this.showOnTheNav(this.quantityToShow);
-    console.log(this.cartItems);
+    if (this.cartItems.map((e) => e.id).includes(id)) {
+      const pos = this.cartItems.map((e) => e.id).indexOf(id);
+      this.cartItems[pos].quantity += quantity;
+      this.quantityToShow += quantity;
+      this.showOnTheNav(this.quantityToShow);
+    } else {
+      this.cartItems.push(new CartItem(id, imgSrc, name, price, quantity));
+      this.quantityToShow += quantity;
+      this.showOnTheNav(this.quantityToShow);
+    }
+
+    //console.log(this.cartItems);
   }
   removeFromCart(index: number, quantity: number) {
     this.cartItems.splice(index, 1);
     console.log(this.cartItems);
     this.quantityToShow -= quantity;
+    this.showOnTheNav(this.quantityToShow);
+  }
+  changeProductQuantity(index: number, quantity: number) {
+    let prevQuantity = this.cartItems[index].quantity;
+    this.cartItems[index].quantity = quantity;
+    console.log(this.cartItems[index]);
+    if (this.cartItems[index].quantity > prevQuantity) {
+      this.quantityToShow += this.cartItems[index].quantity - prevQuantity;
+    } else {
+      this.quantityToShow -= prevQuantity - this.cartItems[index].quantity;
+    }
     this.showOnTheNav(this.quantityToShow);
   }
 }
