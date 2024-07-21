@@ -106,19 +106,16 @@ export class WarehouseService {
       this.quantityToShow += quantity;
       this.showOnTheNav(this.quantityToShow);
     }
-
-    //console.log(this.cartItems);
   }
   removeFromCart(index: number, quantity: number) {
     this.cartItems.splice(index, 1);
-    //console.log(this.cartItems);
     this.quantityToShow -= quantity;
     this.showOnTheNav(this.quantityToShow);
   }
   changeProductQuantity(index: number, quantity: number) {
     let prevQuantity = this.cartItems[index].quantity;
     this.cartItems[index].quantity = quantity;
-    //console.log(this.cartItems[index]);
+
     if (this.cartItems[index].quantity > prevQuantity) {
       this.quantityToShow += this.cartItems[index].quantity - prevQuantity;
     } else {
@@ -138,13 +135,11 @@ export class WarehouseService {
         total = subtotal + shipping;
       });
       calculations.push(subtotal);
-
       if (shipping) {
         calculations.push(shipping);
       } else {
         calculations.push('FREE');
       }
-
       calculations.push(total);
     }
     return calculations;

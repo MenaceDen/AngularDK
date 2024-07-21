@@ -159,80 +159,125 @@
       >
     </div>
     <div class="col-md-7 col-12 pt-4">
-      <form id="contact-form" role="form">
+      <form id="contact-form" (ngSubmit)="onSubmit()" #contactForm="ngForm">
         <div class="row">
           <div class="col-md-6 col-12">
             <div class="form-floating mt-2 border-bottom border-dark">
               <input
-                name="person_name"
                 type="text"
                 class="form-control border-0 focus-ring"
                 id="name_input"
                 placeholder="Name"
                 maxlength="30"
+                ngModel
+                name="nameField"
+                required
+                #name="ngModel"
               />
               <label for="name_input" class="form-label">Name</label>
             </div>
+            <span class="help-block" *ngIf="!name.valid && name.touched"
+              >Name is required</span
+            >
           </div>
           <div class="col-md-6 col-12">
             <div class="form-floating mt-2 border-bottom border-dark">
               <input
-                name="email"
                 type="email"
                 class="form-control border-0 focus-ring"
                 id="mail_input"
                 placeholder="Email"
+                ngModel
+                name="emailField"
+                required
+                email
+                #email="ngModel"
               />
               <label for="mail_input" class="form-label">Email</label>
             </div>
+            <span class="help-block" *ngIf="!email.valid && email.touched"
+              >Email is required</span
+            >
           </div>
         </div>
         <div class="form-floating mt-2 border-bottom border-dark">
           <input
-            name="subject"
             type="text"
             class="form-control border-0 focus-ring"
             id="subject_input"
             placeholder="Subject"
             maxlength="60"
+            ngModel
+            name="subjectField"
+            required
+            #subject="ngModel"
           />
           <label for="subject_input" class="form-label">Subject</label>
         </div>
+        <span class="help-block" *ngIf="!subject.valid && subject.touched"
+          >Subject is required</span
+        >
         <div class="form-floating mt-2 border-bottom border-dark">
           <textarea
-            name="message"
             id="message"
             rows="3"
             class="form-control border-0 focus-ring"
             placeholder="Message"
             style="height: 100%"
+            ngModel
+            name="messageField"
+            required
+            #message="ngModel"
           ></textarea>
           <label for="message" class="form-label">Message</label>
         </div>
+        <span class="help-block" *ngIf="!message.valid && message.touched"
+          >Message is required</span
+        >
         <button
-          type="button"
+          type="submit"
+          [disabled]="!contactForm.valid"
           class="btn btn-light border border-dark rounded-1 d-block mx-auto mt-2"
         >
           SEND
         </button>
       </form>
 
-      <form id="newsletter_form" class="mt-5">
+      <form
+        id="newsletter_form"
+        class="mt-5"
+        (ngSubmit)="onSubscribe()"
+        #newsletterForm="ngForm"
+      >
         <p class="mb-2">Get our newsletters</p>
         <div class="row">
           <div class="col-md-6 col-12">
             <div class="form mt-2 border border-dark">
               <input
-                name="newsletter_email"
                 type="email"
                 class="form-control focus-ring"
                 id="newsletter_mail_input"
                 placeholder="Enter your email here"
+                ngModel
+                name="newsEmailField"
+                required
+                email
+                #newsEmail="ngModel"
               />
             </div>
+            <span
+              class="help-block"
+              *ngIf="!newsEmail.valid && newsEmail.touched"
+              >Email is required</span
+            >
           </div>
           <div class="col-6">
-            <button class="btn btn-dark mt-2 rounded-1">Subscribe now</button>
+            <button
+              class="btn btn-dark mt-2 rounded-1"
+              [disabled]="!newsletterForm.valid"
+            >
+              Subscribe now
+            </button>
           </div>
         </div>
       </form>

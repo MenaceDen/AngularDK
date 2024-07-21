@@ -1,0 +1,12 @@
+#signup_container {
+  background-image: url("/Images/loginBackground.jpg");
+  background-size: cover;
+  background-position: center;
+}
+input.ng-invalid.ng-touched {
+  border: 1px solid red !important;
+}
+span {
+  color: red;
+  font-size: 0.9rem;
+}

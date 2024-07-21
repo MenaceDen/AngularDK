@@ -31,3 +31,12 @@
     font-size: 0.9rem;
   }
 }
+
+input.ng-invalid.ng-touched,
+textarea.ng-invalid.ng-touched {
+  border: 1px solid red !important;
+}
+form span {
+  color: red;
+  font-size: 0.9rem;
+}

@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { WarehouseService } from '../services/warehouse.service';
 import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-shopping-cart',
@@ -10,7 +11,10 @@ import { CommonModule } from '@angular/common';
   styleUrl: './shopping-cart.component.css',
 })
 export class ShoppingCartComponent {
-  constructor(public warehouseService: WarehouseService) {}
+  constructor(
+    public warehouseService: WarehouseService,
+    private router: Router
+  ) {}
 
   delFromCart(index: number, quantity: number) {
     this.warehouseService.removeFromCart(index, quantity);
@@ -21,5 +25,8 @@ export class ShoppingCartComponent {
     } else {
       //alert('Input positive number or remove item from the cart');
     }
+  }
+  completeOrder() {
+    this.router.navigate(['/order']);
   }
 }

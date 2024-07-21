@@ -1,20 +1,49 @@
-<div class="container px-md-5">
-  <div id="login_container" class="container py-5">
+<div class="container">
+  <div id="signup_container" class="container py-5">
     <div class="container-fluid py-5">
       <div class="container-fluid py-5">
         <div class="container-fluid py-5 text-center">
-          <h2>Log in</h2>
-          <p>
-            New to the site?
-            <a class="text-dark" routerLink="/signup">Sign Up</a>
-          </p>
+          <h2>Sign Up</h2>
+
           <div class="row">
-            <div class="col-lg-4 col-md-5 col-8 ms-auto me-auto">
+            <div class="col-lg-4 col-md-6 col-11 ms-auto me-auto">
               <form
                 class="d-flex flex-column align-items-start"
                 (ngSubmit)="onSubmit()"
-                #loginForm="ngForm"
+                #signupForm="ngForm"
               >
+                <label for="name_input">First Name</label>
+                <input
+                  class="w-100 border border-secondary-subtle fs-4"
+                  id="name_input"
+                  type="text"
+                  ngModel
+                  name="nameField"
+                  required
+                  #name="ngModel"
+                  minlength="5"
+                  autocomplete="off"
+                />
+                <span class="help-block" *ngIf="!name.valid && name.touched"
+                  >Name is required</span
+                >
+                <label for="surname_input">Last Name</label>
+                <input
+                  class="w-100 border border-secondary-subtle fs-4"
+                  id="surname_input"
+                  type="text"
+                  ngModel
+                  name="surnameField"
+                  required
+                  minlength="5"
+                  #surname="ngModel"
+                  autocomplete="off"
+                />
+                <span
+                  class="help-block"
+                  *ngIf="!surname.valid && surname.touched"
+                  >Surname is required</span
+                >
                 <label for="mail_input">Email</label>
                 <input
                   class="w-100 border border-secondary-subtle fs-4"
@@ -25,6 +54,7 @@
                   required
                   email
                   #email="ngModel"
+                  autocomplete="off"
                 />
                 <span class="help-block" *ngIf="!email.valid && email.touched"
                   >Email is required</span
@@ -39,6 +69,7 @@
                   required
                   #password="ngModel"
                   minlength="5"
+                  autocomplete="off"
                 />
                 <span
                   class="help-block"
@@ -51,10 +82,16 @@
                 <button
                   class="btn btn-light border-0 mt-2 w-100"
                   type="submit"
-                  [disabled]="!loginForm.valid"
+                  [disabled]="!signupForm.valid"
                 >
-                  Log In
+                  Sign Up
                 </button>
+                <div class="container-fluid text-center">
+                  <p>
+                    Already a member?
+                    <a class="text-dark" routerLink="/login">Log In</a>
+                  </p>
+                </div>
               </form>
             </div>
           </div>

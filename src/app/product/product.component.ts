@@ -21,7 +21,7 @@ export class ProductComponent {
     price: number,
     quantity: any
   ) {
-    if (parseInt(quantity)) {
+    if (parseInt(quantity) && quantity > 0) {
       this.warehouse.addProductToCart(
         id,
         imgSrc,
@@ -30,7 +30,7 @@ export class ProductComponent {
         parseInt(quantity)
       );
     } else {
-      console.log('not a number'); //Remove it later!
+      console.log('not a number'); //Maybe some toast
     }
   }
 }

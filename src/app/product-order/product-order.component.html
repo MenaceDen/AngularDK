@@ -1,0 +1,121 @@
+<div class="row">
+  <div class="col-lg-5 col-11 ms-auto me-auto">
+    <form>
+      <div class="form-floating mt-2 border-bottom border-dark">
+        <input
+          type="text"
+          class="form-control border-0 focus-ring"
+          id="name_input"
+          placeholder="any"
+          ngModel
+          name="nameField"
+          required
+          #name="ngModel"
+        />
+        <label for="name_input" class="form-label"
+          >First Name<i class="text-danger">*</i>:</label
+        >
+      </div>
+      <div class="form-floating mt-2 border-bottom border-dark">
+        <input
+          type="text"
+          class="form-control border-0 focus-ring"
+          id="surname_input"
+          placeholder="any"
+          ngModel
+          name="surnameField"
+          required
+          #surname="ngModel"
+        />
+        <label for="surname_input" class="form-label"
+          >Last Name<i class="text-danger">*</i>:</label
+        >
+      </div>
+      <div class="form-floating mt-2 border-bottom border-dark">
+        <input
+          type="email"
+          class="form-control border-0 focus-ring"
+          id="mail_input"
+          placeholder="any"
+          ngModel
+          email
+          name="emailField"
+          required
+          #mail="ngModel"
+        />
+        <label for="mail_input" class="form-label"
+          >Email Address<i class="text-danger">*</i>:</label
+        >
+      </div>
+      <div class="form-floating mt-2 border-bottom border-dark">
+        <input
+          type="text"
+          class="form-control border-0 focus-ring"
+          id="phone_input"
+          placeholder="any"
+          ngModel
+          name="phoneField"
+          required
+          #phone="ngModel"
+        />
+        <label for="phone_input" class="form-label"
+          >Phone Number<i class="text-danger">*</i>:</label
+        >
+      </div>
+      <div class="form-floating mt-2 border-bottom border-dark">
+        <input
+          type="text"
+          class="form-control border-0 focus-ring"
+          id="address_input"
+          placeholder="any"
+          ngModel
+          name="addressField"
+          required
+          #address="ngModel"
+        />
+        <label for="address_input" class="form-label"
+          >Address<i class="text-danger">*</i>:</label
+        >
+      </div>
+      <div class="form-floating mt-2 border-bottom border-dark">
+        <textarea
+          id="comment_input"
+          rows="3"
+          class="form-control border-0 focus-ring"
+          placeholder="any"
+          style="height: 100%"
+          ngModel
+          name="commentField"
+          required
+          #comment="ngModel"
+        ></textarea>
+        <label for="comment_input" class="form-label">Comment:</label>
+      </div>
+      <div class="form-floating mt-2 border-bottom border-dark">
+        <select
+          type="text"
+          class="form-select border-0 focus-ring"
+          id="payment_input"
+          placeholder="any"
+          ngModel
+          name="paymentField"
+          required
+          #payment="ngModel"
+        >
+          <option value="creditCard">Credit Card</option>
+          <option value="payPal">PayPal</option>
+          <option value="onDelivery">Payment on Delivery</option>
+        </select>
+
+        <label for="payment_input" class="form-label"
+          >Payment Method<i class="text-danger">*</i>:</label
+        >
+      </div>
+    </form>
+  </div>
+</div>
+<div class="row">
+  <div class="col-lg-2 col-4 ms-auto me-auto">
+    <button class="btn btn-dark w-100 rounded-0 mt-3">Confirm</button>
+  </div>
+</div>
