@@ -32,17 +32,9 @@
           class="form-control"
           [defaultValue]="item.quantity"
           #cartQuantity
-          id="quantField"
           (change)="addQuantity($index, cartQuantity.value)"
           style="width: 60px; height: 35px"
         />
-        <label
-          for="quantField"
-          #inputAlert
-          class="text-danger"
-          style="display: none"
-          >Input positive number or remove item from the cart</label
-        >
         <h4 class="fs-6">{{ item.price * item.quantity }}<span>$</span></h4>
       </div>
     </div>
@@ -51,17 +43,31 @@
       <div class="col-lg-6 col-12 d-flex flex-column ms-auto me-0">
         <div class="container-fluid d-flex justify-content-between">
           <p class="mb-0">Subtotal:</p>
-          <p class="mb-0">{{ 22 }}<span>$</span></p>
+          <p class="mb-0">
+            {{ warehouseService.calculateCart()[0] }}<span>$</span>
+          </p>
         </div>
         <div
           class="container-fluid d-flex justify-content-between border-bottom"
         >
           <p class="mb-0">Shipping:</p>
-          <p class="mb-0">{{ 100 }}<span>$</span></p>
+          <p class="mb-0">
+            {{ warehouseService.calculateCart()[1]
+            }}<span
+              [ngClass]="
+                warehouseService.calculateCart()[1] == 100
+                  ? 'visible'
+                  : 'invisible'
+              "
+              >$</span
+            >
+          </p>
         </div>
         <div class="container-fluid d-flex justify-content-between">
           <p class="mb-0">Total:</p>
-          <p class="mb-0">{{ 100 }}<span>$</span></p>
+          <p class="mb-0">
+            {{ warehouseService.calculateCart()[2] }}<span>$</span>
+          </p>
         </div>
         <div class="container-fluid d-flex justify-content-end">
           <button class="btn btn-dark">Checkout</button>
