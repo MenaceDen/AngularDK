@@ -1,82 +1,101 @@
 <div class="row">
   <div class="col-lg-5 col-11 ms-auto me-auto">
-    <form>
+    <form [formGroup]="orderForm" (ngSubmit)="onSubmit()">
       <div class="form-floating mt-2 border-bottom border-dark">
         <input
           type="text"
           class="form-control border-0 focus-ring"
           id="name_input"
           placeholder="any"
-          ngModel
-          name="nameField"
-          required
-          #name="ngModel"
+          formControlName="nameField"
         />
         <label for="name_input" class="form-label"
           >First Name<i class="text-danger">*</i>:</label
         >
       </div>
+      <span
+        *ngIf="
+          !orderForm.controls['nameField'].valid &&
+          orderForm.controls['nameField'].touched
+        "
+        >Name is required</span
+      >
       <div class="form-floating mt-2 border-bottom border-dark">
         <input
           type="text"
           class="form-control border-0 focus-ring"
           id="surname_input"
           placeholder="any"
-          ngModel
-          name="surnameField"
-          required
-          #surname="ngModel"
+          formControlName="surnameField"
         />
         <label for="surname_input" class="form-label"
           >Last Name<i class="text-danger">*</i>:</label
         >
       </div>
+      <span
+        *ngIf="
+          !orderForm.controls['surnameField'].valid &&
+          orderForm.controls['surnameField'].touched
+        "
+        >Surname is required</span
+      >
       <div class="form-floating mt-2 border-bottom border-dark">
         <input
           type="email"
           class="form-control border-0 focus-ring"
           id="mail_input"
           placeholder="any"
-          ngModel
-          email
-          name="emailField"
-          required
-          #mail="ngModel"
+          formControlName="emailField"
         />
         <label for="mail_input" class="form-label"
           >Email Address<i class="text-danger">*</i>:</label
         >
       </div>
+      <span
+        *ngIf="
+          !orderForm.controls['emailField'].valid &&
+          orderForm.controls['emailField'].touched
+        "
+        >Email is required</span
+      >
       <div class="form-floating mt-2 border-bottom border-dark">
         <input
           type="text"
           class="form-control border-0 focus-ring"
           id="phone_input"
           placeholder="any"
-          ngModel
-          name="phoneField"
-          required
-          #phone="ngModel"
+          formControlName="phoneField"
         />
         <label for="phone_input" class="form-label"
           >Phone Number<i class="text-danger">*</i>:</label
         >
       </div>
+      <span
+        *ngIf="
+          !orderForm.controls['phoneField'].valid &&
+          orderForm.controls['phoneField'].touched
+        "
+        >Phone is required</span
+      >
       <div class="form-floating mt-2 border-bottom border-dark">
         <input
           type="text"
           class="form-control border-0 focus-ring"
           id="address_input"
           placeholder="any"
-          ngModel
-          name="addressField"
-          required
-          #address="ngModel"
+          formControlName="addressField"
         />
         <label for="address_input" class="form-label"
           >Address<i class="text-danger">*</i>:</label
         >
       </div>
+      <span
+        *ngIf="
+          !orderForm.controls['addressField'].valid &&
+          orderForm.controls['addressField'].touched
+        "
+        >Address is required</span
+      >
       <div class="form-floating mt-2 border-bottom border-dark">
         <textarea
           id="comment_input"
@@ -84,10 +103,7 @@
           class="form-control border-0 focus-ring"
           placeholder="any"
           style="height: 100%"
-          ngModel
-          name="commentField"
-          required
-          #comment="ngModel"
+          formControlName="commentField"
         ></textarea>
         <label for="comment_input" class="form-label">Comment:</label>
       </div>
@@ -97,10 +113,7 @@
           class="form-select border-0 focus-ring"
           id="payment_input"
           placeholder="any"
-          ngModel
-          name="paymentField"
-          required
-          #payment="ngModel"
+          formControlName="paymentField"
         >
           <option value="creditCard">Credit Card</option>
           <option value="payPal">PayPal</option>
@@ -111,11 +124,24 @@
           >Payment Method<i class="text-danger">*</i>:</label
         >
       </div>
+      <span
+        *ngIf="
+          !orderForm.controls['paymentField'].valid &&
+          orderForm.controls['paymentField'].touched
+        "
+        >Payment is required</span
+      >
+      <div class="row">
+        <div class="col-lg-4 col-6 ms-auto me-auto">
+          <button
+            type="submit"
+            class="btn btn-dark w-100 rounded-0 mt-3"
+            [disabled]="!orderForm.valid"
+          >
+            Confirm
+          </button>
+        </div>
+      </div>
     </form>
-  </div>
-</div>
-<div class="row">
-  <div class="col-lg-2 col-4 ms-auto me-auto">
-    <button class="btn btn-dark w-100 rounded-0 mt-3">Confirm</button>
   </div>
 </div>
