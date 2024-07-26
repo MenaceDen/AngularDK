@@ -1,10 +1,4 @@
-import {
-  Component,
-  Input,
-  OnChanges,
-  OnInit,
-  SimpleChanges,
-} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { WarehouseService } from '../services/warehouse.service';
 import { ActivatedRoute, Params } from '@angular/router';
 
@@ -21,6 +15,7 @@ export class CategoryComponent implements OnInit {
     private route: ActivatedRoute
   ) {}
   categName?: string;
+
   ngOnInit(): void {
     this.routeChanged(this.route.snapshot.params['category']);
     this.route.params.subscribe((params: Params) => {
@@ -30,7 +25,7 @@ export class CategoryComponent implements OnInit {
   routeChanged(name: string) {
     this.categName = name;
   }
-  chooseProduct(productId: number) {
-    this.warehouse.showProduct(productId);
+  chooseProduct(index: number) {
+    this.warehouse.showProduct(index);
   }
 }

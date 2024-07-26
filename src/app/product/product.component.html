@@ -1,6 +1,6 @@
 <div class="container">
-  @for(product of warehouse.offer.goods; track product){ @if(product.id ===
-  warehouse.offerId){
+  @for(product of warehouse.flowers; track $index){ @if($index ===
+  warehouse.currentIndex){
   <div class="row">
     <div class="col-lg-6 col-12 px-0">
       <div>
@@ -36,7 +36,12 @@
     <div
       class="col-lg-6 col-12 d-flex justify-content-lg-end justify-content-center"
     >
-      <img [src]="product.imgSrc" [alt]="product.name" class="img-fluid" />
+      <img
+        [src]="product.imgSrc"
+        [alt]="product.name"
+        class="img-fluid"
+        style="width: 370px; height: auto"
+      />
     </div>
     <div class="col-lg-6 col-12">
       <h4 class="mt-2">{{ product.name }}</h4>

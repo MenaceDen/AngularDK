@@ -22,7 +22,7 @@ export const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'signup', component: SignupComponent },
   { path: 'order', component: ProductOrderComponent },
-  { path: 'product/:id', component: ProductComponent },
+  { path: 'product/:index', component: ProductComponent },
   { path: 'not-found', component: NotFoundComponent },
   { path: '**', redirectTo: '/not-found' },
 ];
