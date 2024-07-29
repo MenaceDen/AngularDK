@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { WarehouseService } from '../services/warehouse.service';
 import { RouterLink } from '@angular/router';
+import { ShoppingCartService } from '../services/shopping-cart.service';
 
 @Component({
   selector: 'app-product',
@@ -10,7 +11,10 @@ import { RouterLink } from '@angular/router';
   styleUrl: './product.component.css',
 })
 export class ProductComponent {
-  constructor(public warehouse: WarehouseService) {}
+  constructor(
+    public warehouse: WarehouseService,
+    public shoppingCart: ShoppingCartService
+  ) {}
   chooseAnother(dest: string) {
     this.warehouse.showAnother(dest);
   }
@@ -22,7 +26,7 @@ export class ProductComponent {
     quantity: any
   ) {
     if (parseInt(quantity) && quantity > 0) {
-      this.warehouse.addProductToCart(
+      this.shoppingCart.addProductToCart(
         id,
         imgSrc,
         name,

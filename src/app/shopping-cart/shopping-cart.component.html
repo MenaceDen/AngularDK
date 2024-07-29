@@ -1,9 +1,9 @@
 <div class="container text-center py-3">
-  @if(warehouseService.cartItems.length == 0){
+  @if(shoppingCartService.cartItems.length == 0){
   <h1>Shopping cart is empty</h1>
   } @else {
   <div class="container-fluid">
-    @for(item of warehouseService.cartItems; track $index){
+    @for(item of shoppingCartService.cartItems; track item){
     <div class="row py-1 border-bottom">
       <div class="col-lg-5 col-12 d-flex">
         <img
@@ -14,10 +14,7 @@
         />
         <div class="d-flex flex-column align-items-start">
           <h4 class="ms-1 fs-6 text-start">{{ item.name }}</h4>
-          <button
-            class="btn ms-1 mt-3 p-0"
-            (click)="delFromCart($index, item.quantity)"
-          >
+          <button class="btn ms-1 mt-3 p-0" (click)="delFromCart(item.id)">
             Remove
           </button>
         </div>
@@ -44,7 +41,7 @@
         <div class="container-fluid d-flex justify-content-between">
           <p class="mb-0">Subtotal:</p>
           <p class="mb-0">
-            {{ warehouseService.calculateCart()[0] }}<span>$</span>
+            {{ shoppingCartService.calculateCart()[0] }}<span>$</span>
           </p>
         </div>
         <div
@@ -52,10 +49,10 @@
         >
           <p class="mb-0">Shipping:</p>
           <p class="mb-0">
-            {{ warehouseService.calculateCart()[1]
+            {{ shoppingCartService.calculateCart()[1]
             }}<span
               [ngClass]="
-                warehouseService.calculateCart()[1] == 100
+                shoppingCartService.calculateCart()[1] == 100
                   ? 'visible'
                   : 'invisible'
               "
@@ -66,7 +63,7 @@
         <div class="container-fluid d-flex justify-content-between">
           <p class="mb-0">Total:</p>
           <p class="mb-0">
-            {{ warehouseService.calculateCart()[2] }}<span>$</span>
+            {{ shoppingCartService.calculateCart()[2] }}<span>$</span>
           </p>
         </div>
         <div class="container-fluid d-flex justify-content-end">

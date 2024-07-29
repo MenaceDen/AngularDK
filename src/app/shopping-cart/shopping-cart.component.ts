@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { WarehouseService } from '../services/warehouse.service';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
+import { ShoppingCartService } from '../services/shopping-cart.service';
 
 @Component({
   selector: 'app-shopping-cart',
@@ -13,15 +14,26 @@ import { Router } from '@angular/router';
 export class ShoppingCartComponent {
   constructor(
     public warehouseService: WarehouseService,
-    private router: Router
+    private router: Router,
+    public shoppingCartService: ShoppingCartService
   ) {}
 
-  delFromCart(index: number, quantity: number) {
-    this.warehouseService.removeFromCart(index, quantity);
+  delFromCart(id: number) {
+    this.shoppingCartService.removeFromCart(id).subscribe({
+      next: (data: any) => {
+        let deletedItemIndex = this.shoppingCartService.cartItems.findIndex(
+          (item) => item.id == data.id
+        );
+        this.shoppingCartService.cartItems.splice(deletedItemIndex, 1);
+      },
+    });
+    setTimeout(() => {
+      this.shoppingCartService.showOnTheNav();
+    }, 100);
   }
   addQuantity(index: number, quantity: any) {
     if (parseInt(quantity) && quantity > 0) {
-      this.warehouseService.changeProductQuantity(index, parseInt(quantity));
+      this.shoppingCartService.changeProductQuantity(index, parseInt(quantity));
     } else {
       //alert('Input positive number or remove item from the cart');
     }

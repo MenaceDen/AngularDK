@@ -38,9 +38,9 @@ export class ProductOrderComponent implements OnInit {
   }
   onSubmit() {
     console.log(this.orderForm);
-    this.warehouseService.cartItems.length = 0;
-    this.warehouseService.quantityToShow = 0;
-    this.warehouseService.showOnTheNav(0);
+    //this.warehouseService.cartItems.length = 0;
+    //this.warehouseService.quantityToShow = 0;
+    //this.warehouseService.showOnTheNav(0);
     this.router.navigate(['/home']);
   }
 }

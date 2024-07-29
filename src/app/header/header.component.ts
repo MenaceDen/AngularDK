@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
-import { WarehouseService } from '../services/warehouse.service';
 import { CommonModule } from '@angular/common';
 import { LoginService } from '../services/login.service';
+import { ShoppingCartService } from '../services/shopping-cart.service';
 
 @Component({
   selector: 'app-header',
@@ -13,12 +13,12 @@ import { LoginService } from '../services/login.service';
 })
 export class HeaderComponent implements OnInit {
   constructor(
-    private warehouseService: WarehouseService,
-    public loginService: LoginService
+    public loginService: LoginService,
+    private shoppingCartService: ShoppingCartService
   ) {}
   numb: number = 0;
   ngOnInit(): void {
-    this.warehouseService.showBadgeNumber.subscribe({
+    this.shoppingCartService.showBadgeNumber.subscribe({
       next: (digit: any) => {
         if (!digit) {
           this.numb = 0;
