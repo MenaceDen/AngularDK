@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { WarehouseService } from '../services/warehouse.service';
 import { RouterLink } from '@angular/router';
 import { ShoppingCartService } from '../services/shopping-cart.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-product',
@@ -13,7 +14,8 @@ import { ShoppingCartService } from '../services/shopping-cart.service';
 export class ProductComponent {
   constructor(
     public warehouse: WarehouseService,
-    public shoppingCartService: ShoppingCartService
+    public shoppingCartService: ShoppingCartService,
+    private toastr: ToastrService
   ) {}
   chooseAnother(dest: string) {
     this.warehouse.showAnother(dest);
@@ -35,7 +37,7 @@ export class ProductComponent {
           parseInt(quantity)
         );
       } else {
-        console.log('not a number'); //Maybe some toast
+        this.toastr.warning('Enter positive number!', 'Oops!');
       }
     } else {
       const pos = this.shoppingCartService.cartItems

@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { CartItem } from '../Models/CartItem';
 import { HttpClient } from '@angular/common/http';
 import { Subject } from 'rxjs';
+import { ToastrService } from 'ngx-toastr';
 
 @Injectable({
   providedIn: 'root',
@@ -12,7 +13,7 @@ export class ShoppingCartService {
   cartItems: CartItem[] = [];
   quantityToShow: number = 0;
   editedCartItem: any;
-  constructor(private httpClient: HttpClient) {
+  constructor(private httpClient: HttpClient, private toastr: ToastrService) {
     this.accessShoppingCart().subscribe({
       next: (data: CartItem[]) => (this.cartItems = data),
       error: (e: any) => console.log(e),
@@ -45,6 +46,19 @@ export class ShoppingCartService {
   removeFromCart(cartID: number) {
     return this.httpClient.delete(this.apiUrl + '/' + cartID);
   }
+  delFromCart(id: number) {
+    this.removeFromCart(id).subscribe({
+      next: (data: any) => {
+        let deletedItemIndex = this.cartItems.findIndex(
+          (item) => item.id == data.id
+        );
+        this.cartItems.splice(deletedItemIndex, 1);
+      },
+    });
+    setTimeout(() => {
+      this.showOnTheNav();
+    }, 100);
+  }
 
   changeProductQuantity(item: CartItem, quantity?: number) {
     return this.httpClient.put(this.apiUrl + '/' + item.id, item);
@@ -71,7 +85,7 @@ export class ShoppingCartService {
         },
       });
     } else {
-      alert('Input positive number or remove item from the cart');
+      this.toastr.warning('Input positive number or delete item!', 'Oops!');
     }
     this.showOnTheNav();
   }

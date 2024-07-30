@@ -6,8 +6,8 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
-import { WarehouseService } from '../services/warehouse.service';
 import { Router } from '@angular/router';
+import { ShoppingCartService } from '../services/shopping-cart.service';
 
 @Component({
   selector: 'app-product-order',
@@ -18,7 +18,7 @@ import { Router } from '@angular/router';
 })
 export class ProductOrderComponent implements OnInit {
   constructor(
-    private warehouseService: WarehouseService,
+    private shoppingCartService: ShoppingCartService,
     private router: Router
   ) {}
   orderForm!: FormGroup;
@@ -38,9 +38,11 @@ export class ProductOrderComponent implements OnInit {
   }
   onSubmit() {
     console.log(this.orderForm);
-    //this.warehouseService.cartItems.length = 0;
-    //this.warehouseService.quantityToShow = 0;
-    //this.warehouseService.showOnTheNav(0);
+    if (this.shoppingCartService.cartItems) {
+      this.shoppingCartService.cartItems.forEach((item) => {
+        this.shoppingCartService.delFromCart(item.id);
+      });
+    }
     this.router.navigate(['/home']);
   }
 }
