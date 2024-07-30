@@ -11,6 +11,7 @@ export class ShoppingCartService {
   showBadgeNumber: Subject<number> = new Subject<number>();
   cartItems: CartItem[] = [];
   quantityToShow: number = 0;
+  editedCartItem: any;
   constructor(private httpClient: HttpClient) {
     this.accessShoppingCart().subscribe({
       next: (data: CartItem[]) => (this.cartItems = data),
@@ -22,7 +23,7 @@ export class ShoppingCartService {
     return this.httpClient.get(this.apiUrl);
   }
   addProd(newProd: CartItem) {
-    return this.httpClient.post('http://localhost:3000/cart', newProd);
+    return this.httpClient.post(this.apiUrl, newProd);
   }
   addProductToCart(
     id: number,
@@ -33,14 +34,8 @@ export class ShoppingCartService {
   ) {
     this.addProd(new CartItem(id, imgSrc, name, price, quantity)).subscribe({
       next: (item: any) => {
-        if (this.cartItems.map((e) => e.id).includes(id)) {
-          const pos = this.cartItems.map((e) => e.id).indexOf(id);
-          this.cartItems[pos].quantity += quantity;
-          this.showOnTheNav();
-        } else {
-          this.cartItems.push(item);
-          this.showOnTheNav();
-        }
+        this.cartItems.push(item);
+        this.showOnTheNav();
       },
       error: (err) => {
         console.log(err);
@@ -48,20 +43,36 @@ export class ShoppingCartService {
     });
   }
   removeFromCart(cartID: number) {
-    //this.cartItems.splice(index, 1);
-
-    return this.httpClient.delete(`http://localhost:3000/cart/${cartID}`);
-    //this.showOnTheNav();
+    return this.httpClient.delete(this.apiUrl + '/' + cartID);
   }
-  changeProductQuantity(index: number, quantity: number) {
-    let prevQuantity = this.cartItems[index].quantity;
-    this.cartItems[index].quantity = quantity;
 
-    // if (this.cartItems[index].quantity > prevQuantity) {
-    //   this.quantityToShow += this.cartItems[index].quantity - prevQuantity;
-    // } else {
-    //   this.quantityToShow -= prevQuantity - this.cartItems[index].quantity;
-    // }
+  changeProductQuantity(item: CartItem, quantity?: number) {
+    return this.httpClient.put(this.apiUrl + '/' + item.id, item);
+  }
+  addQuantity(item: CartItem, quantity: any) {
+    this.editedCartItem = item;
+    if (parseInt(quantity) && quantity > 0) {
+      this.editedCartItem.id = item.id;
+      this.editedCartItem.imgSrc = item.imgSrc;
+      this.editedCartItem.name = item.name;
+      this.editedCartItem.price = item.price;
+      this.editedCartItem.quantity = parseInt(quantity);
+      this.changeProductQuantity(this.editedCartItem).subscribe({
+        next: (item: any) => {
+          let editedItemIndex = this.cartItems.findIndex(
+            (cartItem) => cartItem.id == item.id
+          );
+          if (editedItemIndex != -1) {
+            this.cartItems[editedItemIndex] = item;
+          }
+        },
+        error: (err) => {
+          console.log(err);
+        },
+      });
+    } else {
+      alert('Input positive number or remove item from the cart');
+    }
     this.showOnTheNav();
   }
   calculateCart(): any[] {
@@ -86,7 +97,7 @@ export class ShoppingCartService {
     return calculations;
   }
   showOnTheNav() {
-    let numb = 0;
+    let numb: number = 0;
     if (this.cartItems) {
       this.cartItems.forEach((item) => {
         numb += item.quantity;

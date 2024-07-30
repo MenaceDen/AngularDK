@@ -29,7 +29,7 @@
           class="form-control"
           [defaultValue]="item.quantity"
           #cartQuantity
-          (change)="addQuantity($index, cartQuantity.value)"
+          (change)="shoppingCartService.addQuantity(item, cartQuantity.value)"
           style="width: 60px; height: 35px"
         />
         <h4 class="fs-6">{{ item.price * item.quantity }}<span>$</span></h4>
