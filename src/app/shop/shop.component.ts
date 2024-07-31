@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-
 import { CategoryComponent } from '../category/category.component';
 import { RouterLink, RouterOutlet, Router } from '@angular/router';
 

@@ -8,6 +8,7 @@ import {
 } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ShoppingCartService } from '../services/shopping-cart.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-product-order',
@@ -19,7 +20,8 @@ import { ShoppingCartService } from '../services/shopping-cart.service';
 export class ProductOrderComponent implements OnInit {
   constructor(
     private shoppingCartService: ShoppingCartService,
-    private router: Router
+    private router: Router,
+    private toastr: ToastrService
   ) {}
   orderForm!: FormGroup;
   ngOnInit(): void {
@@ -44,5 +46,6 @@ export class ProductOrderComponent implements OnInit {
       });
     }
     this.router.navigate(['/home']);
+    this.toastr.success('Order finished!', 'Thank You!');
   }
 }
