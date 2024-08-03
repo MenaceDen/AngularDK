@@ -27,7 +27,7 @@
                   #email="ngModel"
                 />
                 <span class="help-block" *ngIf="!email.valid && email.touched"
-                  >Email is required</span
+                  >Email is in incorrect format!</span
                 >
                 <label class="mt-2" for="psw_input">Password</label>
                 <input
@@ -43,7 +43,7 @@
                 <span
                   class="help-block"
                   *ngIf="!password.valid && password.touched"
-                  >Password is required</span
+                  >At least 5 characters</span
                 >
                 <a class="mt-5 text-decoration-none text-dark" href="#"
                   >Forgot password?</a

@@ -209,5 +209,21 @@
       "description": "Artisan Crafted Belgian Chocolate Covered Treats Crafted in a Small Batch Kitchen 12 Strawberries Hand Dipped in Belgian Dark Chocolate Hand Decorated with drizzles and White Chocolate Letters spelling out 'CONGRATS' Arrives in an Elegant Gift Box"
     }
   ],
-  "cart": []
+  "cart": [],
+  "clients": [
+    {
+      "id": "2268",
+      "firstName": "Moses",
+      "lastName": "Li    ",
+      "email": "post@mail",
+      "password": "12345"
+    },
+    {
+      "id": "6ea3",
+      "firstName": "Drugi",
+      "lastName": "Kokas",
+      "email": "mail@mail",
+      "password": "23456"
+    }
+  ]
 }

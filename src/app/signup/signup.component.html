@@ -25,7 +25,8 @@
                   autocomplete="off"
                 />
                 <span class="help-block" *ngIf="!name.valid && name.touched"
-                  >Name is required</span
+                  >{{ name.value }}, Your name is too short! Type at least 5
+                  symbols</span
                 >
                 <label for="surname_input">Last Name</label>
                 <input
@@ -42,7 +43,8 @@
                 <span
                   class="help-block"
                   *ngIf="!surname.valid && surname.touched"
-                  >Surname is required</span
+                  >{{ surname.value }}, Your surname is too short! Type at least
+                  5 symbols</span
                 >
                 <label for="mail_input">Email</label>
                 <input
@@ -57,7 +59,7 @@
                   autocomplete="off"
                 />
                 <span class="help-block" *ngIf="!email.valid && email.touched"
-                  >Email is required</span
+                  >Email is in incorrect format</span
                 >
                 <label class="mt-2" for="psw_input">Password</label>
                 <input
@@ -74,7 +76,7 @@
                 <span
                   class="help-block"
                   *ngIf="!password.valid && password.touched"
-                  >Password is required</span
+                  >Put at least 5 characters!</span
                 >
                 <a class="mt-5 text-decoration-none text-dark" href="#"
                   >Forgot password?</a

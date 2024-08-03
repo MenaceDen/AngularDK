@@ -1,18 +1,38 @@
 import { Injectable } from '@angular/core';
-import { Login } from '../Models/Login';
+import { SignupService } from './signup.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Injectable({
   providedIn: 'root',
 })
 export class LoginService {
-  constructor() {}
-  loginData: Login[] = [];
+  constructor(
+    private signupService: SignupService,
+    private toastr: ToastrService
+  ) {}
+
+  isLoggedIn: boolean = false;
+  nameToSow: string = '';
   registerLogin(mail: string, password: string) {
-    this.loginData.push(new Login(mail, password));
-    console.log(this.loginData);
+    if (
+      !this.isLoggedIn &&
+      this.signupService.signupData
+        .map((e) => e.email + e.password)
+        .includes(mail + password)
+    ) {
+      this.isLoggedIn = true;
+      const pos = this.signupService.signupData
+        .map((e) => e.email)
+        .indexOf(mail);
+      this.nameToSow = this.signupService.signupData[pos].firstName;
+    } else if (this.isLoggedIn) {
+      this.toastr.warning('Already logged in!', 'Oops!');
+    } else {
+      this.toastr.warning('Either email or password is incorrect', 'Oops!');
+    }
   }
   logOut() {
-    this.loginData.length = 0;
-    console.log(this.loginData);
+    this.isLoggedIn = false;
+    this.nameToSow = '';
   }
 }
