@@ -212,18 +212,11 @@
   "cart": [],
   "clients": [
     {
-      "id": "2268",
-      "firstName": "Moses",
-      "lastName": "Li    ",
-      "email": "post@mail",
+      "id": "7efb",
+      "firstName": "First",
+      "lastName": "Customer",
+      "email": "first@mail",
       "password": "12345"
-    },
-    {
-      "id": "6ea3",
-      "firstName": "Drugi",
-      "lastName": "Kokas",
-      "email": "mail@mail",
-      "password": "23456"
     }
   ]
 }

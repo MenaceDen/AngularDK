@@ -22,7 +22,10 @@ export class SignupService {
   addClient(newClient: Signup) {
     return this.httpClient.post(this.apiUrl, newClient);
   }
-  showClients() {
-    console.log(this.signupData);
+  changeClientData(existingClient: Signup) {
+    return this.httpClient.put(
+      this.apiUrl + '/' + existingClient.id,
+      existingClient
+    );
   }
 }

@@ -1,0 +1,54 @@
+<!-- Button trigger modal -->
+<button
+  type="button"
+  class="btn btn-primary d-none"
+  data-bs-toggle="modal"
+  data-bs-target="#exampleModal"
+  #superButton
+>
+  Launch demo modal
+</button>
+
+<!-- Modal -->
+<div
+  class="modal fade"
+  #exampleModal
+  id="exampleModal"
+  tabindex="-1"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div
+      class="modal-content d-flex flex-column align-items-center text-center border border-2 border-dark rounded-0"
+    >
+      <div class="modal-header border-0 pb-2 pt-4">
+        <h1 class="modal-title fs-4" id="exampleModalLabel">
+          Thank You for Registering!
+        </h1>
+      </div>
+      <div class="modal-body py-0">
+        <p style="font-size: 0.8rem">
+          We have sent a confirmation email to your email.
+        </p>
+        <p style="font-size: 0.8rem">
+          Please check your email and click on the link to verify your email
+          address
+        </p>
+      </div>
+      <div class="modal-footer border-0 pt-0 pb-4">
+        <button type="button" class="btn btn-dark border rounded-1">
+          Resend Verification Email
+        </button>
+        <button
+          type="button"
+          class="btn btn-dark border rounded-1"
+          data-bs-dismiss="modal"
+          routerLink="/login"
+        >
+          Log In
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

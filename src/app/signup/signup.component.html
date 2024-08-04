@@ -9,7 +9,14 @@
             <div class="col-lg-4 col-md-6 col-11 ms-auto me-auto">
               <form
                 class="d-flex flex-column align-items-start"
-                (ngSubmit)="onSubmit()"
+                (ngSubmit)="
+                  onSubmit(
+                    name.value,
+                    surname.value,
+                    email.value,
+                    password.value
+                  )
+                "
                 #signupForm="ngForm"
               >
                 <label for="name_input">First Name</label>
@@ -43,8 +50,7 @@
                 <span
                   class="help-block"
                   *ngIf="!surname.valid && surname.touched"
-                  >{{ surname.value }}, Your surname is too short! Type at least
-                  5 symbols</span
+                  >Your surname is too short! Type at least 5 symbols</span
                 >
                 <label for="mail_input">Email</label>
                 <input
@@ -102,3 +108,4 @@
     </div>
   </div>
 </div>
+<app-signup-modal></app-signup-modal>
