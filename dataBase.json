@@ -217,6 +217,13 @@
       "lastName": "Customer",
       "email": "first@mail",
       "password": "12345"
+    },
+    {
+      "id": "0088",
+      "firstName": "Second",
+      "lastName": "Client",
+      "email": "second@mail",
+      "password": "54321"
     }
   ]
 }

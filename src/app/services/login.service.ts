@@ -11,7 +11,7 @@ export class LoginService {
     private toastr: ToastrService
   ) {}
 
-  isLoggedIn: boolean = false;
+  isLoggedIn: boolean = false; //Let's pretend that this is a token
   nameToSow: string = '';
   registerLogin(mail: string, password: string) {
     if (

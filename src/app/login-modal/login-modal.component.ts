@@ -2,13 +2,13 @@ import { Component, ElementRef, ViewChild } from '@angular/core';
 import { RouterLink } from '@angular/router';
 
 @Component({
-  selector: 'app-signup-modal',
+  selector: 'app-login-modal',
   standalone: true,
   imports: [RouterLink],
-  templateUrl: './signup-modal.component.html',
-  styleUrl: './signup-modal.component.css',
+  templateUrl: './login-modal.component.html',
+  styleUrl: './login-modal.component.css',
 })
-export class SignupModalComponent {
+export class LoginModalComponent {
   @ViewChild('superButton') dugme!: ElementRef;
 
   openModal() {
