@@ -85,7 +85,7 @@ export class ShoppingCartService {
         },
       });
     } else {
-      this.toastr.warning('Input positive number or delete item!', 'Oops!');
+      this.toastr.warning('Input positive number', 'Oops!');
     }
     this.showOnTheNav();
   }
